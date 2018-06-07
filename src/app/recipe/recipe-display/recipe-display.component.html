@@ -1,0 +1,24 @@
+<div class="row" *ngIf="service.selectedItem != null" class="list-group-item clearfix">
+  <div class="row">
+    <div class="col-xs-12">
+      <div>
+        <h2>{{service.selectedItem.name}}</h2>
+      </div>
+      <div>
+        <h4 class="margin-top">Estimated time: {{service.selectedItem.estimatedTime}} min</h4>
+      </div>
+      <div>
+        <h4 class="margin-top">Ingredients:</h4>
+        <p class="list-group-item-text" *ngFor="let ingredient of service.selectedItem.ingredients">{{ingredient.quantity}} {{ingredient.name}}</p>
+      </div>
+      <div>
+        <h4 class="margin-top">Directions:</h4>
+        <p class="list-group-item-text" *ngFor="let instruction of service.selectedItem.instructions">{{instruction}}</p>
+      </div>
+      <div style="margin-top: 1rem">
+        <button class="btn btn-warning" (click)="service.edit(service.selectedItem)" style="margin-right: 2px;">Edit Recipe</button>
+        <button class="btn btn-danger" (click)="service.delete(service.selectedItem)">Delete Recipe</button>
+      </div>
+    </div>
+  </div>
+</div>

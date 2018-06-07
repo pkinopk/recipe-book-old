@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-xs-12">
+    <a href="#" class="list-group-item clearfix" *ngFor="let recipe of recipes" (click)="service.select(recipe)">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ recipe.name }}</h4>
+        <p class="list-group-item-text">A delicious {{ recipe.name }}!</p>
+      </div>
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12" style="margin-top: 1rem">
+    <button class="btn btn-success">New Recipe</button>
+  </div>
+</div>
