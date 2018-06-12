@@ -1,6 +1,6 @@
-<div id="newEditRecipe" class="list-group-item clearfix" *ngIf="service.showEditComponent">
+<div id="newEditRecipe" class="list-group-item clearfix" *ngIf="service.showEditComponent" style="background-color: #f5f5f5">
   <div>
-    <h3>Create / Edit Recipe</h3>
+    <h2>Create / Edit Recipe</h2>
   </div>
   <div class="div-margin">
     <p>Recipe Name</p>
@@ -13,7 +13,9 @@
         <div class="form-inline ingredients" *ngFor="let n of service.ingredientsCount; let i=index">
           <input type="number" class="form-control form-inline" placeholder="Quantity" [(ngModel)]="service.ingredientsCount[i].quantity">
           <input type="text" class="form-control form-inline" placeholder="Ingredient name" [(ngModel)]="service.ingredientsCount[i].name">
-          <button class="btn btn-secondary" (click)="service.addNewIngredient()" style="margin: 0;">+</button>
+          <button class="badge btn btn-outline-secondary" (click)="service.addNewIngredientField()" style="margin: 0;">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
         </div>
       </div>
     </div>

@@ -1,13 +1,25 @@
+import * as $ from 'jquery';
 import { Recipe } from './recipe/recipe.model';
 import { Ingredient } from './ingredient/ingredient.model';
-
-import * as $ from 'jquery';
+import { Fridge } from './fridge/fridge.model';
+import { log } from 'util';
 
 export class RecipeManagementService {
+  newFridgeIngredientName;
+  newFridgeIngredientQuantity;
+  checkIngredients = false;
+  shoppingList: Ingredient[][];
   ingredientsCount: Array<Ingredient> = [new Ingredient('', 0)];
   formBinding: Recipe = new Recipe('', [new Ingredient('', 0)], [''], 0);
   selectedItem: Recipe = null;
   showEditComponent = false;
+  fridge = new Fridge([
+    new Ingredient('large onion', 1),
+    new Ingredient('large carrots', 2),
+    new Ingredient('potatos', 5),
+    new Ingredient('cups of water', 2),
+    new Ingredient('tablespoon of oil', 1),
+  ]);
   recipes: Recipe[] = [
     new Recipe(
       'Potato and Carrot Stew',
@@ -43,8 +55,11 @@ export class RecipeManagementService {
     ),
   ];
 
+  // END OF VARIABLE DECLARATION
+
   select(recipe) {
     this.selectedItem = recipe;
+    this.discard();
   }
 
   delete(recipe) {
@@ -52,6 +67,7 @@ export class RecipeManagementService {
     this.recipes.splice(index, 1);
     this.selectedItem = null;
     this.discard();
+    this.checkIngredients = false;
   }
 
   saveRecipe() {
@@ -65,12 +81,14 @@ export class RecipeManagementService {
     );
     this.discard();
     this.showEditComponent = false;
+    this.selectedItem = null;
   }
 
   discard() {
     this.formBinding = new Recipe('', [new Ingredient('', 0)], [''], 0);
     this.ingredientsCount = [new Ingredient('', 0)];
     this.showEditComponent = false;
+    this.checkIngredients = false;
   }
 
   edit(recipe) {
@@ -83,6 +101,7 @@ export class RecipeManagementService {
     for (let i = 0; i < this.selectedItem.ingredients.length; i++) {
       this.ingredientsCount.push(new Ingredient(this.selectedItem.ingredients[i].name, this.selectedItem.ingredients[i].quantity));
     }
+    this.selectedItem = null;
   }
 
   createIngredients() {
@@ -99,7 +118,18 @@ export class RecipeManagementService {
     return ingredients;
   }
 
-  addNewIngredient() {
+  addNewIngredientField() {
     this.ingredientsCount.push(new Ingredient('', 0));
+  }
+
+  addIngredientToFridge() {
+    this.fridge.add(new Ingredient(this.newFridgeIngredientName, this.newFridgeIngredientQuantity));
+    this.newFridgeIngredientName = null;
+    this.newFridgeIngredientQuantity = null;
+  }
+
+  checkRecipe() {
+    this.shoppingList = this.fridge.checkRecipe(this.selectedItem);
+    this.checkIngredients = true;
   }
 }
