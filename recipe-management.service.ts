@@ -71,17 +71,20 @@ export class RecipeManagementService {
   }
 
   saveRecipe() {
-    this.recipes.push(
-      new Recipe(
-        this.formBinding.name,
-        this.createIngredients(),
-        new Array(this.formBinding.instructions.toString()),
-        this.formBinding.estimatedTime
-      )
-    );
-    this.discard();
-    this.showEditComponent = false;
-    this.selectedItem = null;
+    console.log(this.createIngredients());
+    if (this.formBinding.name !== '' && this.formBinding.instructions.toString() !== '' && this.createIngredients().length !== 0) {
+      this.recipes.push(
+        new Recipe(
+          this.formBinding.name,
+          this.createIngredients(),
+          new Array(this.formBinding.instructions.toString()),
+          this.formBinding.estimatedTime
+        )
+      );
+      this.discard();
+      this.showEditComponent = false;
+      this.selectedItem = null;
+    }
   }
 
   discard() {
