@@ -1,0 +1,14 @@
+<div class="row" style="margin-bottom: 8rem;">
+  <div class="col-xs-12">
+    <div class="list-group-item" *ngIf="service.checkIngredients" style="background-color: #f5f5f5">
+      <h2>Shopping List</h2>
+      <hr>
+      <div *ngFor="let ingredient of service.shoppingList[0]" class="list-group-item clearfix">
+        <div class="form-inline">
+          <label>({{ ingredient.quantity }}) {{ ingredient.name }}</label>
+        </div>
+      </div>
+      <p *ngIf="service.shoppingList[0].length === 0">No ingredients to buy</p>
+    </div>
+  </div>
+</div>

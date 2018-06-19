@@ -1,0 +1,21 @@
+<div class="row" style="margin-bottom: 8rem;">
+  <div class="col-xs-12">
+    <div class="list-group-item">
+      <h2>Fridge</h2>
+      <hr>
+      <div class="list-group-item clearfix" *ngFor="let ingredient of service.fridge.contents">
+        <div class="form-inline">
+          <label>({{ ingredient.quantity }}) {{ ingredient.name }}</label>
+          <button class="btn btn-outline-danger badge pull-right" (click)="service.fridge.remove(ingredient)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+        </div>
+      </div>
+      <div class="form-inline ingredients" style="margin-top: 1rem;">
+        <input type="number" class="form-control form-inline" placeholder="Qty" [(ngModel)]="service.newFridgeIngredientQuantity">
+        <input type="text" class="form-control form-inline" placeholder="Ingredient name" [(ngModel)]="service.newFridgeIngredientName">
+        <button class="btn btn-success" (click)="service.addIngredientToFridge()" style="margin-left: 1rem;">Add Ingredient</button>
+      </div>
+    </div>
+  </div>
+</div>
