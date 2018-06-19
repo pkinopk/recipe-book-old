@@ -1,0 +1,6 @@
+When clicking on New Recipe or Edit, jump to that div
+Only Allow to save recipes that have content
+Fix the Directions field to save as different items in the array
+Add descriptions to the recipes
+Add pictures to the recipes list
+

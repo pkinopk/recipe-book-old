@@ -1,0 +1,35 @@
+<div id="newEditRecipe" class="list-group-item clearfix" *ngIf="service.showEditComponent" style="background-color: #f5f5f5">
+  <div>
+    <h2>Create / Edit Recipe</h2>
+  </div>
+  <div class="div-margin">
+    <p>Recipe Name</p>
+    <input type="text" [(ngModel)]="service.formBinding.name" class="form-control" id="recipeName">
+  </div>
+  <div class="div-margin">
+    <p>Ingredients:</p>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="form-inline ingredients" *ngFor="let n of service.ingredientsCount; let i=index">
+          <input type="number" class="form-control form-inline" placeholder="Quantity" [(ngModel)]="service.ingredientsCount[i].quantity">
+          <input type="text" class="form-control form-inline" placeholder="Ingredient name" [(ngModel)]="service.ingredientsCount[i].name">
+          <button class="badge btn btn-outline-secondary" (click)="service.addNewIngredientField()" style="margin: 0;">
+            <span class="glyphicon glyphicon-plus"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="div-margin">
+    <p>Directions</p>
+    <input type="text" [(ngModel)]="service.formBinding.instructions" id="instructions" class="form-control">
+  </div>
+  <div>
+    <p>Estimated time in minutes</p>
+    <input type="number" [(ngModel)]="service.formBinding.estimatedTime" id="estimatedTime" class="form-control">
+  </div>
+  <div>
+    <button class="btn btn-primary btn-margin" (click)="service.saveRecipe()" id="save">Save Recipe</button>
+    <button class="btn btn-secondary btn-margin" (click)="service.discard()" id="discart">Discard</button>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+.btn {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+p {
+  margin: 0;
+}
+
+.div-margin {
+  margin-bottom: 10px;
+}
+
+input[type='number'] {
+  width: 5em;
+}
